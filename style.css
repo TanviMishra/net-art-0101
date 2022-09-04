@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;500;600;700&display=swap');
+:root{
+    --bg:black;
+    --accent: green;
+    --text: grey;
+}
+body{
+    background-color: var(--bg);
+    color:var(--text);
+    font-family: 'Overpass Mono', monospace;
+    padding: 4% 5%;
+}
+hr{
+    margin: 3% 0 0 6%; 
+    border: 0.1px solid var(--accent);
+    opacity: 40%;
+}
+h1{
+    color: var(--accent);
+    margin: 0;
+}
+h2{
+    margin: 0;
+}
+h3{
+    margin: 0 0 0 0;
+    writing-mode: vertical-lr; 
+    transform: rotate(180deg);
+}
+h4{
+    font-size:smaller;
+    margin: 4px 0 0 0;
+    opacity: 60%;
+}
+#header{
+    position: sticky;
+    margin: 0 0 0 3.5%;
+    top: 6%;
+}
+#index{
+    width: 55%;
+    margin: -4% 0 0 0;
+}
+.section{
+    display:flex;
+    align-self:flex-end;
+    margin: 3% 0 0 0;
+}
+.thumbnail-container{
+    display: flex;
+    flex-wrap: wrap;
+    /*flex-direction: row;
+    flex-wrap: wrap; */
+    margin: 0 0 0 3%;
+}
+.thumbnail{
+    background-color: var(--text);
+    width: 100px;
+    height: 100px;
+    margin: 10px 10px 0 0;
+}
+.thumbnail:hover{
+    background-color: var(--accent);
+}
+.active{
+    opacity: 100%;
+}
+.deactive{
+    opacity: 30%;
+}
+.deactive:hover{
+    opacity: 100%;
+}
+#sketchList{
+    position: absolute;
+    top: 0;
+    right:0;
+    width: 30vw;
+    height: 70vh;
+    border:0.1px solid var(--accent);
+    padding: 10px;
+    color: var(--accent);
+}
+.list{
+    list-style-type:square;
+    padding: 0 0 0 20px;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
