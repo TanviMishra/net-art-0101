@@ -1,14 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;500;600;700&display=swap');
 :root{
     --bg:black;
+    --bgOpacity:rgba(0, 0, 0, 0.20);
     --accent: green;
-    --text: grey;
+    --accent2: yellowgreen;
+    --text: rgb(148, 148, 148);
 }
 body{
     background-color: var(--bg);
     color:var(--text);
     font-family: 'Overpass Mono', monospace;
     padding: 4% 5%;
+}
+::selection {
+    background-color: var(--accent);
+    color: var(--accent2);
 }
 hr{
     margin: 3% 0 0 6%; 
@@ -18,19 +24,43 @@ hr{
 h1{
     color: var(--accent);
     margin: 0;
+    width: fit-content;
+    text-transform: uppercase;
 }
 h2{
     margin: 0;
+    width: fit-content;
+    text-transform: uppercase;
 }
 h3{
     margin: 0 0 0 0;
     writing-mode: vertical-lr; 
     transform: rotate(180deg);
+    color: var(--accent);
+    width: fit-content;
 }
 h4{
     font-size:smaller;
     margin: 4px 0 0 0;
     opacity: 60%;
+    width: fit-content;
+}
+h5{
+    font-size: 1em;
+    margin:3px 0;
+    width: fit-content;
+    font-weight: 100;
+}
+li{
+    font-size: 1.1em;
+    margin: 4px 0 0 0;
+    width: fit-content;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+li:hover{
+    color: var(--accent2);
+    animation: textExpand 1s ease-in-out;
 }
 #header{
     position: sticky;
@@ -46,6 +76,18 @@ h4{
     align-self:flex-end;
     margin: 3% 0 0 0;
 }
+.thumbnail-wrapper:hover{
+    color: var(--accent);
+    animation: textExpand 0.6s ease-in-out;
+}
+.thumbnail-wrapper:hover div{
+    background-color: var(--accent);
+}
+@keyframes textExpand {
+    0% {letter-spacing: 1px;}
+    70% {letter-spacing: 2px;}
+    100% {letter-spacing: 1px;}
+}
 .thumbnail-container{
     display: flex;
     flex-wrap: wrap;
@@ -59,27 +101,26 @@ h4{
     height: 100px;
     margin: 10px 10px 0 0;
 }
-.thumbnail:hover{
-    background-color: var(--accent);
-}
 .active{
     opacity: 100%;
 }
 .deactive{
     opacity: 30%;
 }
-.deactive:hover{
-    opacity: 100%;
-}
 #sketchList{
     position: absolute;
     top: 0;
     right:0;
-    width: 30vw;
-    height: 70vh;
+    width: 25vw;
+    height: fit-content;
     border:0.1px solid var(--accent);
-    padding: 10px;
+    padding: 50px 10px 10px 10px;
     color: var(--accent);
+    background-color:var(--bgOpacity);
+}
+#sketchList hr{
+    margin: 10px 0; 
+    border: 0.1px solid var(--accent);
 }
 .list{
     list-style-type:square;
@@ -90,4 +131,27 @@ h4{
 }
 .hide{
     display: none;
+}
+.cross{
+    position:absolute;
+    top:10px;
+    right: 10px;
+    padding: 0 0.4em;
+    border: 1px solid var(--accent);
+}
+.cross:hover{
+    color: var(--accent2);
+    border: 1px solid var(--accent2);
+}    
+.pop-up-child{
+    /* background-color: var(--accent); */
+    position: fixed;
+    top:0;
+    right:0;
+    z-index: -1;
+}
+img{
+    width:15vw;
+    height: auto;
+    object-fit: contain;
 }
