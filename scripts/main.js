@@ -17,7 +17,7 @@ let mazeIdeaCount = 0;
 let scrnIdeaCount = 0;
 let authIdeaCount = 0;
 let genArr = [
-  "./assets/sketch-ideas/ cartography2.jpg",
+  "assets/sketch-ideas/cartography2.jpeg",
   "./assets/sketch-ideas/cartography1.jpeg",
   "./assets/sketch-ideas/marble.jpg",
 ];
