@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;500;600;700&display=swap');
+:root{
+    --col1opt1: #ccb1ab;
+    --col1opt2: #b57682;
+    --col2opt1: #8598a0;
+    --col2opt2: #59717a;
+    --col2opt3: #324349;
+    --gridSize:2vw;
+
+}
+html {
+    overflow: -moz-scrollbars-vertical; 
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+body{
+    background-color: var(--col1opt1);
+    color:var(--col2opt2);
+    font-family: 'Overpass Mono', monospace;
+    padding: 0;
+    margin: 0;
+}
+::selection {
+    background-color: var(--col2opt3);
+    color: var(--col1opt2);
+}
+hr{
+    /* margin: 3% 0 0 6%;  */
+    border: 0.1px solid var(--col1opt2);
+    opacity: 40%;
+}
+h1{ /* main title */
+    margin: 0;
+    width: fit-content;
+    text-transform: uppercase;
+    font-size:50px;
+    line-height: 55px;
+}
+h2{ /* 2nd title */
+    margin: 20px 0 10px 0;
+    width: fit-content;
+    font-size:16px;
+    text-transform: uppercase;
+}
+p{ 
+    margin: 0;
+    width: fit-content;
+    font-size:16px;
+}
+#bg{
+    width:100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+#projectInfo{
+    position: absolute;
+    top:0;
+    right:4vw;
+    /* background-color: var(--col2opt1); */
+    width: 26vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#clickInfo{
+    width: 80%;
+    min-height: 170px;
+    background-color: #324349 ;
+    border: 1px solid var(--col1opt2);
+    padding: 2vw;
+}
+.cityPixel{
+    position: absolute;
+    top:10px;
+    left:10px;
+    width: var(--gridSize);
+    height: var(--gridSize);
+    background-color: var(--col2opt1);
+    border: 1px solid var(--col2opt2);
+    z-index: 2;
+}
+.cityPixel:hover{
+    opacity:70%;
+    mix-blend-mode: multiply;
+    cursor: pointer;
+}
+.hoverText{
+    position: absolute;
+    top:10px;
+    left:10px;
+    width: 15vw;
+    height: fit-content;
+    background-color: var(--col1opt1);
+    opacity: 90%;
+    color: var(--col2opt3);
+    z-index: 3;
+    padding:10px;
+    cursor: pointer;
+}
+.grid{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: var(--gridSize);
+    height: var(--gridSize);
+    border: 0.1px solid var(--col2opt2);
+    opacity: 20%;
+    z-index: 2;
+}
+#ruleButton{
+    position: absolute;
+    top:4vw;
+    right:0;
+    width: var(--gridSize);
+    height: var(--gridSize);
+    background-color: var(--col1opt1);
+    z-index: 5;
+}
+#ruleButton p{
+    font-size: 26px;
+    margin: auto;
+} 
+#ruleButton:hover{
+    opacity:70%;
+    mix-blend-mode: multiply;
+    cursor: pointer;
+}    
+#rulePopup{
+    position: absolute;
+    top:5vw;
+    right:1vw;
+    width: 20vw;
+    height: auto;
+    background-color: var(--col1opt1);
+    z-index: 6;
+    padding: 20px;
+    opacity: 90%;
+    cursor: pointer;
+}
