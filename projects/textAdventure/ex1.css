@@ -67,7 +67,7 @@ p{
     width: 80%;
     min-height: 170px;
     background-color: #324349 ;
-    border: 1px solid var(--col1opt2);
+    border: 2px solid var(--col1opt2);
     padding: 2vw;
 }
 .cityPixel{
@@ -138,3 +138,51 @@ p{
     opacity: 90%;
     cursor: pointer;
 }
+#progress{
+    background-color:var(--col2opt3);
+    border: 2px solid var(--col1opt2);
+    position: absolute;
+    padding: 1vw;
+    bottom:2vw;
+    left:2vw;
+    width: 30vw;
+    height: fit-content;
+}
+#progressBar{
+    width: 30vw;
+    height: 0.1vw;
+    background-color: var(--col1opt2);
+    z-index: 5;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#progressWrapper{
+    width: 30vw;
+    height: 0.8vw;
+    display: flex;
+    justify-content: space-between;
+}
+.progressIcon{
+    width: 0.8vw;
+    height: 0.8vw;
+    z-index: 5;
+    transform: rotate(45deg);  
+}
+.active{
+    background-color: var(--col1opt1);
+    border: 0.1vw solid var(--col1opt2);
+}
+.deactive{
+    background-color: var(--col1opt2);
+    border: 0.1vw solid var(--col1opt2);
+}
+.progressIcon:hover{
+    background-color: var(--col1opt2);
+    animation: rotatePixel 2s ease-in-out;
+}
+@keyframes rotatePixel {
+    0% {transform: rotate(45deg);}
+    50% {transform: rotate(90deg);}
+    100% {transform: rotate(45deg);}
+  }

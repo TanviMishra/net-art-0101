@@ -3,6 +3,7 @@ grid = document.querySelector("#grid");
 rules = document.querySelector("#ruleButton");
 rulePopup = document.querySelector("#rulePopup");
 clickInfo = document.querySelector("#clickInfo");
+progressWrapper = document.querySelector("#progressWrapper");
 
 let placeOptions = [
   "Garhkaru",
@@ -145,6 +146,43 @@ let hoverTextJson = {
       alertText: "You're entering dangerous teritory",
     },
   ],
+  urls: [
+    {
+      type: "url",
+      hover: "0. For broader coverage of this topic, see Volcanism.",
+      text: "A volcano is a rupture in the crust of a planetary-mass object, such as Earth, that allows hot lava, volcanic ash, and gases to escape from a magma chamber below the surface.",
+      urlText: "whoops",
+      urlLink: "https://en.wikipedia.org/wiki/Volcanism",
+    },
+    {
+      type: "url",
+      hover: "1. For broader coverage of this topic, see Volcanism.",
+      text: "A volcano is a rupture in the crust of a planetary-mass object, such as Earth, that allows hot lava, volcanic ash, and gases to escape from a magma chamber below the surface.",
+      urlText: "whoops",
+      urlLink: "https://en.wikipedia.org/wiki/Volcanism",
+    },
+    {
+      type: "url",
+      hover: "2. For broader coverage of this topic, see Volcanism.",
+      text: "A volcano is a rupture in the crust of a planetary-mass object, such as Earth, that allows hot lava, volcanic ash, and gases to escape from a magma chamber below the surface.",
+      urlText: "whoops",
+      urlLink: "https://en.wikipedia.org/wiki/Volcanism",
+    },
+    {
+      type: "url",
+      hover: "3. For broader coverage of this topic, see Volcanism.",
+      text: "A volcano is a rupture in the crust of a planetary-mass object, such as Earth, that allows hot lava, volcanic ash, and gases to escape from a magma chamber below the surface.",
+      urlText: "whoops",
+      urlLink: "https://en.wikipedia.org/wiki/Volcanism",
+    },
+    {
+      type: "url",
+      hover: "4. For broader coverage of this topic, see Volcanism.",
+      text: "A volcano is a rupture in the crust of a planetary-mass object, such as Earth, that allows hot lava, volcanic ash, and gases to escape from a magma chamber below the surface.",
+      urlText: "whoops",
+      urlLink: "https://en.wikipedia.org/wiki/Volcanism",
+    },
+  ],
 };
 let tempCol = getComputedStyle(document.body);
 let colorArr = [
@@ -157,9 +195,9 @@ let colorArr = [
 let placeArr = [];
 let positionArr = [];
 let hoverTextCount = 0;
-let correctClueNumber = 0;
+let correctClueNumber = -1;
 let gridSize = 2;
-const clueMax = 1; //the total number of places clicked
+const clueMax = 9; //the total number of places clicked
 
 for (i = 0; i < 68; i += gridSize) {
   for (j = 0; j < 44; j += gridSize) {
@@ -181,28 +219,43 @@ function createGrid(i, j) {
   div.style.top = j + "vw"; //positioning div width
   grid.append(div); //adding to html page
 }
-function openWindow(
-  url = "https://www.geeksforgeeks.org/how-to-open-url-in-new-tab-using-javascript/"
-) {
-  document.open("https://www.google.com", "_blank");
-  // document.write("<h1>You Won</h1>");
-  // document.close();
+function openWindow(urlTxt = "you won") {
+  // document.open("https://www.google.com", "_blank");
+  document.open();
+  document.write("<h1>" + urlTxt + "</h1>");
+  document.close();
 }
+function progress() {
+  progressWrapper.replaceChildren();
+
+  for (i = 0; i <= clueMax; i++) {
+    let div = document.createElement("div");
+    if (i <= correctClueNumber) {
+      console.log(clueMax, correctClueNumber, i);
+      div.setAttribute("class", "progressIcon active");
+    } else {
+      div.setAttribute("class", "progressIcon deactive");
+    }
+    progressWrapper.append(div);
+  }
+}
+progress();
 function doubleClickEvents(type, div, dblText = "null") {
   if (type == "hints") {
-    console.log(parseInt(div.id), correctClueNumber);
-    parseInt(div.id) == correctClueNumber
-      ? correctClueNumber++
-      : (correctClueNumber = 0);
-    correctClueNumber == clueMax ? openWindow() : console.log("waiting");
+    // console.log(parseInt(div.id), correctClueNumber + 1);
+    parseInt(div.id) == correctClueNumber + 1
+      ? correctClueNumber++ && console.log("winning")
+      : (correctClueNumber = -1);
+    correctClueNumber == clueMax ? openWindow() : console.log();
+    progress();
   } else if (type == "alerts") {
-    alert(dblText);
+    alert(dblText); //displays alert
   } else if (type == "urls") {
-    console.log(dblText);
+    openWindow(dblText); //fn call
   }
 }
 class placeClass {
-  constructor(type, index = 0, alert = "null", url = "null") {
+  constructor(type, index = 0) {
     this.positon = Math.floor(Math.random() * (positionArr.length - 1)); //used in arrUpdate() this.positon = positionArr.length - 1; //for tests
     this.width = positionArr[this.positon][0];
     this.height = positionArr[this.positon][1];
@@ -220,11 +273,11 @@ class placeClass {
       this.alertText = hoverTextJson.alerts[index].alertText; //exclusive property
       this.color = "#0000ff"; //hard coded blue
     } else if (type == "urls") {
-      console.log("urls");
       this.hoverText = hoverTextJson.urls[index].hover;
       this.infoText = hoverTextJson.urls[index].text;
-      this.urlText = hoverTextJson.urls[index].url; //exclusive property
-      this.color = "#ff00ff"; //hard coded purple
+      this.urlText = hoverTextJson.urls[index].urlText; //exclusive property
+      this.urlLink = hoverTextJson.urls[index].urlLink; //exclusive property
+      this.color = "#8E33FF"; //hard coded purple
     }
   }
   displayParameters() {
@@ -236,8 +289,9 @@ class placeClass {
       this.placeName,
       this.color,
       // this.clue, //type==hint
-      this.alertText, //type==alert
+      // this.alertText, //type==alert
       // this.urlText, //type==url
+      // this.urlLink, //type==url
       this.hoverText,
       this.infoText
     );
@@ -258,13 +312,16 @@ class placeClass {
     let dblText;
     if (this.type == "alerts") dblText = this.alertText;
     if (this.type == "urls") dblText = this.urlText;
-    if (this.type == "hints") dblText = "null";
+    if (this.type == "hints") {
+      dblText = "null";
+      div.innerHTML = this.clue; //TO REMOVE
+    }
     div.setAttribute("class", "cityPixel"); //set class w css properties
     if (this.type == "hints") div.setAttribute("id", this.clue); //set id for identification and search
     div.style.top = this.height + "vw"; //positioning div height
     div.style.left = this.width + "vw"; //positioning div width
     div.style.backgroundColor = this.color;
-    if (Math.random() > 0.7) div.style.borderRadius = "50%";
+    // if (Math.random() > 0.7) div.style.borderRadius = "50%"; //some circles
     body.append(div); //adding to html page
     //ALL EVENT LISTENERS
     div.addEventListener("dblclick", function () {
@@ -303,6 +360,12 @@ for (i = 0; i < hoverTextJson.hints.length; i++) {
 for (i = 0; i < hoverTextJson.alerts.length; i++) {
   place = new placeClass("alerts", i);
   // place.displayParameters();
+  place.arrUpdate();
+  place.setDiv();
+  place.setHoverDiv();
+}
+for (i = 0; i < hoverTextJson.urls.length; i++) {
+  place = new placeClass("urls", i);
   place.arrUpdate();
   place.setDiv();
   place.setHoverDiv();
