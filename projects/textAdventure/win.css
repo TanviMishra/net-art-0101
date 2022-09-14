@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;500;600;700&display=swap');
+:root{
+    --bg: #f1e493;
+    --text:#f5ce3a;
+    --col1opt1: #cece2f;
+    --col1opt2: #aead00;
+    --col1opt3: #818001;
+    --col2opt1: #f5ce3a;
+    --col2opt2: #b96a01;
+    --col2opt3: #922400;
+    --opacity1:#f1e49395;
+    --opacity2:#636801d6;
+    --gridSize:2vw;
+    --outline: #636801;
+}
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+ box-sizing: border-box;
+}
+  
+body {
+  background-color:  var(--outline);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.waviy {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+  font-size: 60px;
+  font-weight: 900;
+}
+.waviy span {
+  font-family: 'Overpass Mono', monospace;
+  position: relative;
+  display: inline-block;
+  color:var(--col2opt1);
+  text-transform: uppercase;
+  animation: waviy 1s infinite;
+  animation-delay: calc(.1s * var(--i));
+  
+}
+@keyframes waviy {
+  0%,40%,100% {
+    transform: translateY(0)
+  }
+  20% {
+    transform: translateY(-20px)
+  }
+}
+a{
+  position: absolute;
+  top:65vh;
+  left:48vw;
+  color:var(--col2opt1);
+  text-transform: uppercase;
+}

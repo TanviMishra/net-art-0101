@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;500;600;700&display=swap');
 :root{
-    --col1opt1: #ccb1ab;
-    --col1opt2: #b57682;
-    --col2opt1: #8598a0;
-    --col2opt2: #59717a;
-    --col2opt3: #324349;
+    --bg: #f1e493;
+    --text:#f5ce3a;
+    --col1opt1: #cece2f;
+    --col1opt2: #aead00;
+    --col1opt3: #818001;
+    --col2opt1: #f5ce3a;
+    --col2opt2: #b96a01;
+    --col2opt3: #922400;
+    --opacity1:#f1e49395;
+    --opacity2:#636801d6;
     --gridSize:2vw;
-
+    --outline: #636801;
 }
 html {
     overflow: -moz-scrollbars-vertical; 
@@ -14,19 +19,19 @@ html {
     overflow-y: hidden;
 }
 body{
-    background-color: var(--col1opt1);
-    color:var(--col2opt2);
+    background-color: var(--bg);
+    color:var(--text);
     font-family: 'Overpass Mono', monospace;
     padding: 0;
     margin: 0;
 }
 ::selection {
-    background-color: var(--col2opt3);
-    color: var(--col1opt2);
+    background-color: var(--col1opt1);
+    color: var(--col2opt3);
 }
 hr{
     /* margin: 3% 0 0 6%;  */
-    border: 0.1px solid var(--col1opt2);
+    border: 2px solid var(--col1opt2);
     opacity: 40%;
 }
 h1{ /* main title */
@@ -34,13 +39,23 @@ h1{ /* main title */
     width: fit-content;
     text-transform: uppercase;
     font-size:50px;
+    font-weight: bold;
     line-height: 55px;
+    background-color: var(--col2opt2);
+    padding: 5px 20px;
+    border: 4px solid var(--outline);
 }
 h2{ /* 2nd title */
-    margin: 20px 0 10px 0;
+    margin: 30px 0 0 0;
+    width: fit-content;
+    font-size:20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+h3{ /* 2nd title */
+    margin: 5px 0 0 0;
     width: fit-content;
     font-size:16px;
-    text-transform: uppercase;
 }
 p{ 
     margin: 0;
@@ -48,16 +63,17 @@ p{
     font-size:16px;
 }
 #bg{
-    width:100vw;
+    width:auto;
     height: 100vh;
-    object-fit: cover;
+    object-fit: contain;
 }
 #projectInfo{
     position: absolute;
     top:0;
-    right:4vw;
-    /* background-color: var(--col2opt1); */
-    width: 26vw;
+    right:0;
+    padding: 0 4vw 0 4vw;
+    /* background-color: var(--opacity1); */
+    width: 22vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -66,34 +82,53 @@ p{
 #clickInfo{
     width: 80%;
     min-height: 170px;
-    background-color: #324349 ;
-    border: 2px solid var(--col1opt2);
+    background-color:#636801;
+    color: var(--text);
+    border: 4px solid var(--col1opt2);
     padding: 2vw;
+    margin: 10vh 0 0 0;
 }
 .cityPixel{
     position: absolute;
     top:10px;
     left:10px;
+    /* width: 1vw;
+    height: 1vw;
+    border-radius: 50%; */
     width: var(--gridSize);
     height: var(--gridSize);
     background-color: var(--col2opt1);
-    border: 1px solid var(--col2opt2);
+    color: var(--col2opt3);
+    padding: auto;
+    /* border: 1px solid var(--col2opt2); */
     z-index: 2;
 }
 .cityPixel:hover{
-    opacity:70%;
-    mix-blend-mode: multiply;
+    /* opacity:80%; */
+    mix-blend-mode:color-dodge;
     cursor: pointer;
+}
+.imgsArr{
+    position: absolute;
+    top:10px;
+    left:10px;
+    width: calc(3*var(--gridSize));
+    height: calc(3*var(--gridSize));
+    z-index: 3;
+    object-fit: cover;
+    opacity: 80%;
+    /* background-color: var(--col2opt3); */
 }
 .hoverText{
     position: absolute;
     top:10px;
     left:10px;
-    width: 15vw;
+    /* width: 15vw; */
+    width: fit-content;
     height: fit-content;
-    background-color: var(--col1opt1);
+    background-color: var(--opacity2);
     opacity: 90%;
-    color: var(--col2opt3);
+    color: var(--col2opt1);
     z-index: 3;
     padding:10px;
     cursor: pointer;
@@ -111,10 +146,12 @@ p{
 #ruleButton{
     position: absolute;
     top:4vw;
-    right:0;
+    right:4vw;
     width: var(--gridSize);
     height: var(--gridSize);
-    background-color: var(--col1opt1);
+    background-color: var(--outline);
+    color: var(--text);
+    border: 4px solid var(--col1opt2);
     z-index: 5;
 }
 #ruleButton p{
@@ -129,29 +166,30 @@ p{
 #rulePopup{
     position: absolute;
     top:5vw;
-    right:1vw;
-    width: 20vw;
+    right:5vw;
+    width: 15vw;
     height: auto;
-    background-color: var(--col1opt1);
+    background-color: var(--opacity2);
+    color: var(--col2opt1);
     z-index: 6;
     padding: 20px;
     opacity: 90%;
     cursor: pointer;
 }
 #progress{
-    background-color:var(--col2opt3);
-    border: 2px solid var(--col1opt2);
+    /* background-color:var(--col2opt3);
+    border: 2px solid var(--col1opt2); */
     position: absolute;
-    padding: 1vw;
-    bottom:2vw;
-    left:2vw;
+    /* padding: 1vw; */
+    top:0.5vw;
+    left:0.5vw;
     width: 30vw;
     height: fit-content;
 }
 #progressBar{
     width: 30vw;
-    height: 0.1vw;
-    background-color: var(--col1opt2);
+    height: 0.2vw;
+    background-color: var(--text);
     z-index: 5;
     position: absolute;
     top: 50%;
@@ -159,7 +197,7 @@ p{
 }
 #progressWrapper{
     width: 30vw;
-    height: 0.8vw;
+    height: 1vw;
     display: flex;
     justify-content: space-between;
 }
@@ -170,15 +208,15 @@ p{
     transform: rotate(45deg);  
 }
 .active{
-    background-color: var(--col1opt1);
-    border: 0.1vw solid var(--col1opt2);
+    background-color: var(--col2opt3);
+    border: 2px solid var(--text);
 }
 .deactive{
-    background-color: var(--col1opt2);
-    border: 0.1vw solid var(--col1opt2);
+    background-color: var(--col1opt1);
+    border: 2px solid var(--text);
 }
 .progressIcon:hover{
-    background-color: var(--col1opt2);
+    background-color: var(--col2opt2);
     animation: rotatePixel 2s ease-in-out;
 }
 @keyframes rotatePixel {
