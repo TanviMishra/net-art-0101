@@ -63,6 +63,9 @@ p{
     font-size:16px;
 }
 #bg{
+    /* position: absolute;
+    bottom: 0;
+    left */
     width:100vw;
     height: auto;
     object-fit: contain;
