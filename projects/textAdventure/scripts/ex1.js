@@ -1,4 +1,67 @@
+//ZOOM;
+
+let zoomPosArr = [
+  [10, 10],
+  [2, 80],
+  [40, 30],
+  [38, 60],
+];
+zoomA = document.querySelector("#a");
+zoomA.style.top = zoomPosArr[0][0] + "vw";
+zoomA.style.left = zoomPosArr[0][1] + "vw";
+zoomB = document.querySelector("#b");
+zoomB.style.top = zoomPosArr[1][0] + "vw";
+zoomB.style.left = zoomPosArr[1][1] + "vw";
+zoomC = document.querySelector("#c");
+zoomC.style.top = zoomPosArr[2][0] + "vw";
+zoomC.style.left = zoomPosArr[2][1] + "vw";
+zoomD = document.querySelector("#d");
+zoomD.style.top = zoomPosArr[3][0] + "vw";
+zoomD.style.left = zoomPosArr[3][1] + "vw";
+zoomABCD = document.querySelectorAll("#zoom-out");
+divMain = document.querySelector("#main");
+divMain1 = document.querySelector("#main1");
+divMain1.style.display = "none";
+divMain2 = document.querySelector("#main2");
+divMain2.style.display = "none";
+divMain3 = document.querySelector("#main3");
+divMain3.style.display = "none";
+divMain4 = document.querySelector("#main4");
+divMain4.style.display = "none";
+mainArray = [divMain, divMain1, divMain2, divMain3, divMain4];
+zoomA.addEventListener("click", function () {
+  zoomClick(divMain, divMain1);
+});
+zoomB.addEventListener("click", function () {
+  zoomClick(divMain, divMain2);
+});
+zoomC.addEventListener("click", function () {
+  zoomClick(divMain, divMain3);
+});
+zoomD.addEventListener("click", function () {
+  zoomClick(divMain, divMain4);
+});
+zoomABCD.forEach((div) => {
+  div.style.top = "10vw";
+  div.style.left = "10vw";
+  div.addEventListener("click", function () {
+    zoomClick(div.parentElement, divMain);
+  });
+});
+function zoomClick(hideDiv, showDiv) {
+  // console.log(hideDiv, showDiv);
+  hideDiv.style.display = "none";
+  showDiv.style.display = "block";
+  showDiv.style.zIndex = "1";
+}
+//
+//
+//
+//
+//
+//NON ZOOM
 body = document.querySelector("body");
+main = document.querySelector("#main");
 grid = document.querySelector("#grid");
 smallImgsDiv = document.querySelector("#smallImgs");
 rules = document.querySelector("#ruleButton");
@@ -111,6 +174,7 @@ let tempCol = getComputedStyle(document.body);
 let colorArr = [
   tempCol.getPropertyValue("--col1opt1"),
   tempCol.getPropertyValue("--col1opt2"),
+  tempCol.getPropertyValue("--col1opt3"),
   tempCol.getPropertyValue("--col2opt1"),
   tempCol.getPropertyValue("--col2opt2"),
   tempCol.getPropertyValue("--col2opt3"),
@@ -179,7 +243,11 @@ for (i = 1; i < 26; i++) {
 }
 for (i = gridSize; i < 68; i += gridSize) {
   for (j = gridSize; j < 44; j += gridSize) {
-    positionArr.push([i, j]); //filling in all the posible values
+    for (k = 0; k < zoomPosArr.length; k++) {
+      // console.log(positionArr);
+      if (zoomPosArr[k][0] != i || zoomPosArr[k][1] != j)
+        positionArr.push([i, j]); //filling in all the posible values
+    }
   }
 }
 for (i = 0; i < 100; i += gridSize) {
@@ -253,6 +321,7 @@ class placeClass {
     this.placeName = placeOptions[this.placePosition]; //place name from array
     this.hoverText = this.placeName; ////TO DO: comment to once hover text updated
     this.type = type; //adding the type to the constructor
+    this.container = mainArray[Math.floor(Math.random() * mainArray.length)];
     if (type == "hints") {
       this.clue = hoverTextCount; //exclusive property
       //  this.hoverText = textJson.hints[this.clue].hover;//TO DO: uncomment to once hover text updated
@@ -317,7 +386,8 @@ class placeClass {
     div.style.left = this.width + "vw"; //positioning div width
     div.style.backgroundColor = this.color;
     // if (Math.random() > 0.7) div.style.borderRadius = "50%"; //some circles
-    body.append(div); //adding to html page
+    this.container.append(div); //adding to html page
+    // main.append(div); //adding to html page
     //ALL EVENT LISTENERS
     div.addEventListener("dblclick", function () {
       doubleClickEvents(type, div, dblText);
@@ -343,7 +413,8 @@ class placeClass {
     div.setAttribute("class", "hoverText"); //set class w css properties
     div.style.top = this.height + 1.5 + "vw"; //positioning div height
     div.style.left = this.width + 1.5 + "vw"; //positioning div width
-    body.append(div); //adding to html page
+    this.container.append(div); //adding to html page
+    // main.append(div); //adding to html page
   }
 }
 for (i = 0; i < textJson.hints.length; i++) {

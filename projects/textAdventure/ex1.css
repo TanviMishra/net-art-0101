@@ -66,6 +66,7 @@ p{
     width:auto;
     height: 100vh;
     object-fit: contain;
+    z-index: -1;
 }
 #projectInfo{
     position: absolute;
@@ -99,14 +100,43 @@ p{
     height: var(--gridSize);
     background-color: var(--col2opt1);
     color: var(--col2opt3);
-    padding: auto;
     /* border: 1px solid var(--col2opt2); */
-    z-index: 2;
+    z-index: 9;
 }
 .cityPixel:hover{
     /* opacity:80%; */
     mix-blend-mode:color-dodge;
     cursor: pointer;
+}
+.zoom-in{
+    /* display: none; */
+    position: absolute;
+    top:10vw;
+    left:10vw;
+    width: var(--gridSize);
+    height: var(--gridSize);
+    background-color: var(--col2opt3);
+    border: 4px solid var(--text);
+    cursor: zoom-in;
+    z-index: 7;
+}
+.zoom-in:hover{
+    mix-blend-mode: color-dodge;
+}
+#zoom-out{
+    /* display: none; */
+    position: absolute;
+    top:10vw;
+    left:10vw;
+    width: var(--gridSize);
+    height: var(--gridSize);
+    background-color: var(--col2opt3);
+    border: 4px solid var(--text);
+    cursor: zoom-out;
+    z-index: 7;
+}
+#zoom-out:hover{
+    mix-blend-mode: color-dodge;
 }
 .imgsArr{
     position: absolute;
@@ -129,7 +159,7 @@ p{
     background-color: var(--opacity2);
     opacity: 90%;
     color: var(--col2opt1);
-    z-index: 3;
+    z-index: 8;/* going over zoom*/
     padding:10px;
     cursor: pointer;
 }
