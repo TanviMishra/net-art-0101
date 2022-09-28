@@ -1,23 +1,63 @@
 body{
-    background-color: blanchedalmond;
-    margin: 0;
-    padding: 0;
+    background-color: #db9731;
     overflow-y: hidden;
     overflow-x: hidden;
     box-sizing: border-box;
+    width: 100%;
+}
+p{
+    background-color: #3f2735;
+    color: #db9731;
+    position: absolute;
+    bottom:7%;
+    left: 10%;
+    inline-size: 78%; 
+    word-break: break-all;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    z-index: 7;
+    padding: 1%;
+}
+#sky{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    bottom:12%;
+    left: 10%;
+    z-index: 6;
+    /* background-color: #315cdb; */
+}
+#sun{
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    top:0;
+    right: 0;
+    z-index: 6;
+    background-color: #c03b31;
+    border-radius: 50%;
+}
+.cloud {
+    position:absolute;
+    /* top: 20%;
+    left: 30%; */
+    background: #434ba0;
+    width: 12vw; 
+    height: 4vw;
+    border-radius: 150px;	
+    animation: move 3s infinite;
 }
 .layers{
     position: absolute;
-    width: 120%;
-    margin-left: -10%;
-    bottom:0;
-    left:0;
-    /* opacity: 50%; */
+    width: 80%;
+    height: 70%;
+    bottom:12%;
+    left: 10%;
     display:flex;
-    flex:1;
-    overflow-x:auto;
     align-items: flex-end;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 #layer1{
     z-index: 5;
