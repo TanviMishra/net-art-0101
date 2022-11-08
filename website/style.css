@@ -1,0 +1,85 @@
+*{
+    /* border: 1px solid blue; */
+}
+::selection {
+    background-color: black;
+    color: goldenrod;
+  }
+body{
+    margin:0;
+    padding:30px 70px;
+}
+h1{
+    font-size: 50px;
+    margin: 0;
+    color: goldenrod;
+}
+h2{
+    margin: 0;
+    color: goldenrod;
+    text-align: right;
+}
+p{
+    margin:5px;
+    width: fit-content;
+}
+#gameName{
+    font-size: 70px;
+}
+#results{
+    text-align: right;
+}
+.hov:hover{
+    color: black;
+    cursor: pointer;
+}
+#page1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#page2{
+    width: 60vw;
+    height: fit-content;
+    position: fixed;
+    top: 15vh;
+    left:20vw;
+    background-color: rgba(255, 255, 255, 0.899);
+    padding: 50px;
+    border: 1px solid goldenrod;
+}
+.linkContainer{
+    height: fit-content;
+    width: 40vw;
+    padding: 10px;
+    margin:10px 0;
+    border: 0.5px solid goldenrod;
+}
+.linkContainer div{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid goldenrod;
+}
+.click:hover{
+    color: goldenrod;
+    cursor: pointer;
+}
+.Title{
+    width: 65%;
+}
+.Author{
+    width: 35%;
+    text-align: right;
+}
+.link{
+    width: fit-content;
+    margin:0;
+}
+.link{
+    color: goldenrod;
+}
+#arrows{
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
